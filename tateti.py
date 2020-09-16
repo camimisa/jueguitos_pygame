@@ -22,9 +22,9 @@ class Tateti:
     exit_rendered = font_menu.render('EXIT', False, red)
     play_rendered = font_menu.render('PLAY AGAIN', False, white)
 
-    imageOne = pygame.image.load('images/circulo.png')
+    imageOne = pygame.image.load('tateti_files/circulo.png')
     circle = pygame.transform.scale(imageOne, [80, 80])
-    imageTwo = pygame.image.load('images/cruz.png')
+    imageTwo = pygame.image.load('tateti_files/cruz.png')
     cross = pygame.transform.scale(imageTwo, [80, 80])
     listRect = []
     listFirstOpen = []
@@ -81,7 +81,6 @@ class Tateti:
                 return -1
 
     def menu(self):
-
         self.window.fill(self.black)
         self.window.blit(self.exit_rendered, self.exit_pos)
         self.window.blit(self.play_rendered, self.play_again_pos)
@@ -105,7 +104,6 @@ class Tateti:
         self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
     def main_tateti(self):
-        print('main tateti')
         self.game_start()
         while self.run:
             pygame.time.delay(100)
