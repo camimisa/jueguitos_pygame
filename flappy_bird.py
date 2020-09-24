@@ -1,3 +1,5 @@
+import os
+
 import pygame
 import random
 
@@ -40,6 +42,24 @@ class FlappyBird:
     SPAWNPIPE = pygame.USEREVENT
     pygame.time.set_timer(SPAWNPIPE, 1200)
     pipe_height = [275, 300, 350, 370, 400]
+
+    def press_to_start(self):
+        waiting = True
+        text = "PRESS SPACE BAR"
+        self.window.blit(self.bg_surface, (0, 0))
+        game_font = pygame.font.Font('retro_computer_personal_use.ttf', 25)
+        game_font.set_bold(True)
+        message_surface = game_font.render(text, True, self.white)
+        message_rect = message_surface.get_rect(center=(self.W // 2, self.H // 2))
+        self.window.blit(message_surface, message_rect)
+        pygame.display.update()
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.run = False
+                    waiting = False
+                if event.type == pygame.KEYDOWN:
+                    waiting = False
 
     def rotate_bird(self, bird):
         new_bird = pygame.transform.rotozoom(bird, -self.bird_movement * 2, 1)
@@ -99,6 +119,7 @@ class FlappyBird:
             self.high_score = self.score
 
     def main_flappy_bird(self):
+        self.press_to_start()
         while self.run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -141,6 +162,7 @@ class FlappyBird:
 
 
 # main
+os.environ['SDL_VIDEO_WINDOW_POS'] = str(0) + "," + str(-20)
 pygame.init()
 juego2 = FlappyBird()
 juego2.main_flappy_bird()
