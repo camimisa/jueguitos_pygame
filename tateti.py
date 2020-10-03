@@ -2,8 +2,6 @@ import pygame
 
 
 class Tateti:
-    pygame.init()
-    pygame.display.set_caption("TA-TE-TI")
     winner = 0
     run = True
     inMenu = False
@@ -87,6 +85,7 @@ class Tateti:
         self.inMenu = True
 
     def game_start(self):
+        self.window.fill((0, 0, 0))
         self.listRect = [pygame.draw.rect(self.window, (8, 47, 99), (230, 130, 340, 340)),
                          pygame.draw.rect(self.window, (188, 196, 208), (240, 140, 100, 100)),
                          pygame.draw.rect(self.window, (188, 196, 208), (350, 140, 100, 100)),
@@ -240,9 +239,9 @@ class Tateti:
                     self.menu()
                     pygame.display.update()
 
-        pygame.quit()
-
 
 # main
-game = Tateti()
-game.main_tateti()
+def main_game():
+    pygame.display.set_caption("TA-TE-TI")
+    game = Tateti()
+    game.main_tateti()

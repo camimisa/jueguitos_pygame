@@ -1,16 +1,11 @@
-import os
-
 import pygame
 import random
 
 
 class FlappyBird:
     run = True
-    W, H = 400, 700
+    W, H = 800, 600
     window = pygame.display.set_mode((W, H))
-    pygame.display.set_caption("FLAPPY BIRD")
-    icon_surface = pygame.image.load('flappy_bird_files/favicon.ico')
-    pygame.display.set_icon(icon_surface)
     clock = pygame.time.Clock()
     #TODO: cambiar esto
     pygame.font.init()
@@ -41,7 +36,7 @@ class FlappyBird:
     pipe_list = []
     SPAWNPIPE = pygame.USEREVENT
     pygame.time.set_timer(SPAWNPIPE, 1200)
-    pipe_height = [275, 300, 350, 370, 400]
+    pipe_height = [275, 300, 320, 350, 350]
 
     def press_to_start(self):
         waiting = True
@@ -111,7 +106,7 @@ class FlappyBird:
             self.window.blit(score_surface, score_rect)
 
             high_score_surface = self.game_font.render('High score: ' + str(int(self.high_score)), True, self.white)
-            high_score_rect = high_score_surface.get_rect(center=(self.W // 2, 560))
+            high_score_rect = high_score_surface.get_rect(center=(self.W // 2, 500))
             self.window.blit(high_score_surface, high_score_rect)
 
     def update_score(self):
@@ -162,8 +157,10 @@ class FlappyBird:
 
 
 # main
-os.environ['SDL_VIDEO_WINDOW_POS'] = str(0) + "," + str(-20)
-pygame.init()
-juego2 = FlappyBird()
-juego2.main_flappy_bird()
-pygame.quit()
+def main_game():
+    pygame.display.set_caption("FLAPPY BIRD")
+    icon_surface = pygame.image.load('flappy_bird_files/favicon.ico')
+    pygame.display.set_icon(icon_surface)
+    juego2 = FlappyBird()
+    juego2.main_flappy_bird()
+
