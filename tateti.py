@@ -243,5 +243,6 @@ class Tateti:
 # main
 def main_game():
     pygame.display.set_caption("TA-TE-TI")
+    pygame.display.set_icon(pygame.image.load('tateti_files/icon_tateti.ico'))
     game = Tateti()
     game.main_tateti()
