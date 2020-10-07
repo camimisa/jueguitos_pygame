@@ -1,6 +1,8 @@
 import pygame
 import flappy_bird
 import tateti
+import snake
+import trex
 
 pygame.init()
 run = True
@@ -59,9 +61,9 @@ while run:
             if listGamesRects[2].collidepoint(pos):
                 print('PONG')
             if listGamesRects[3].collidepoint(pos):
-                print('SNAKE')
+                snake.intro()
             if listGamesRects[4].collidepoint(pos):
-                print('t-rex')
+                trex.main_trex()
             if listGamesRects[5].collidepoint(pos):
                 print('space invaders')
             if listGamesRects[6].collidepoint(pos):
