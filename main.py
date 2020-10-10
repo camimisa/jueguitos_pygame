@@ -7,6 +7,8 @@ import tateti
 import spaceinvaders
 import pong
 import breakout
+import snake
+import trex
 
 run = True
 W, H = 800, 600
@@ -64,9 +66,9 @@ while run:
             if listGamesRects[2].collidepoint(pos):
                 pong.view_menu_screen()
             if listGamesRects[3].collidepoint(pos):
-                print('SNAKE')
+                snake.intro()
             if listGamesRects[4].collidepoint(pos):
-                print('t-rex')
+                trex.main_trex()
             if listGamesRects[5].collidepoint(pos):
                 spaceinvaders.main_game()
             if listGamesRects[6].collidepoint(pos):
