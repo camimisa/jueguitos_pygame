@@ -1,8 +1,11 @@
 import pygame
-import flappy_bird
-import tateti
 
 pygame.init()
+
+import flappy_bird
+import tateti
+import spaceinvaders
+
 run = True
 W, H = 800, 600
 window = pygame.display.set_mode((W, H))
@@ -50,7 +53,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             if listGamesRects[0].collidepoint(pos):
                 tateti.main_game()
@@ -63,7 +66,7 @@ while run:
             if listGamesRects[4].collidepoint(pos):
                 print('t-rex')
             if listGamesRects[5].collidepoint(pos):
-                print('space invaders')
+                spaceinvaders.main_game()
             if listGamesRects[6].collidepoint(pos):
                 print('breakout')
 
