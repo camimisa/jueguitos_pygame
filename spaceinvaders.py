@@ -408,6 +408,6 @@ class SpaceInvaders():
 
 
 def main_game():
-    pygame.display.set_caption("Space invaders pipi")
+    pygame.display.set_caption("Space invaders")
     game = SpaceInvaders()
     game.start_game()

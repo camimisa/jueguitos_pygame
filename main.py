@@ -5,6 +5,8 @@ pygame.init()
 import flappy_bird
 import tateti
 import spaceinvaders
+import pong
+import breakout
 
 run = True
 W, H = 800, 600
@@ -60,7 +62,7 @@ while run:
             if listGamesRects[1].collidepoint(pos):
                 flappy_bird.main_game()
             if listGamesRects[2].collidepoint(pos):
-                print('PONG')
+                pong.view_menu_screen()
             if listGamesRects[3].collidepoint(pos):
                 print('SNAKE')
             if listGamesRects[4].collidepoint(pos):
@@ -68,7 +70,7 @@ while run:
             if listGamesRects[5].collidepoint(pos):
                 spaceinvaders.main_game()
             if listGamesRects[6].collidepoint(pos):
-                print('breakout')
+                breakout.main_game()
 
     pygame.display.set_caption("MENU")
     pygame.display.set_icon(pygame.image.load('icon_menu.ico'))
