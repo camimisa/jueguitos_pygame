@@ -163,7 +163,16 @@ def game_loop():
                     if event.key == pygame.K_h:
                         intro()
                     if event.key == pygame.K_p:
-                        game_loop()
+                        gameExit = False
+                        gameOver = False
+                        lead_x = display_width / 2
+                        lead_y = display_height / 2
+                        snake_list = []
+                        snake_length = 1
+                        lead_x_change = 0
+                        lead_y_change = 0
+                        randappleX = round(random.randrange(0, display_width - block_size) / 10.0) * 10.0
+                        randappleY = round(random.randrange(0, display_height - block_size) / 10.0) * 10.0
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameExit = True
