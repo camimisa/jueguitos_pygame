@@ -15,13 +15,13 @@ FPS = 85
 # imgaes
 tree = pygame.image.load("t-rex_files/tree.png")
 tree = pygame.transform.scale(tree, (70, 50))
-tree1 = pygame.image.load("t-rex_files/tree.png")
+tree1 = pygame.image.load("t-rex_files/tree1.png")
 tree1 = pygame.transform.scale(tree1, (100, 60))
-tree2 = pygame.image.load("t-rex_files/tree.png")
+tree2 = pygame.image.load("t-rex_files/tree2.png")
 tree2 = pygame.transform.scale(tree2, (90, 60))
-tree3 = pygame.image.load("t-rex_files/tree.png")
+tree3 = pygame.image.load("t-rex_files/tree3.png")
 tree3 = pygame.transform.scale(tree3, (45, 60))
-tree4 = pygame.image.load("t-rex_files/tree.png")
+tree4 = pygame.image.load("t-rex_files/tree4.png")
 tree4 = pygame.transform.scale(tree4, (70, 60))
 dino = pygame.image.load("t-rex_files/dra1.png")
 dino = pygame.transform.scale(dino, (50, 50))
@@ -44,6 +44,11 @@ def main_trex():
     icon_surface = pygame.image.load('t-rex_files/favicon.png')
     pygame.display.set_icon(icon_surface)
 
+    #sounds
+    jump_music = pygame.mixer.Sound('t-rex_files/jump.wav')
+ 
+    
+
     back_x = 0
     back_y = 0
     dino_x = 50
@@ -52,7 +57,7 @@ def main_trex():
     tree_y = 282
     back_velocity = 0
     run_point = 0
-    gravity = 7
+    gravity = 6
     game = False
     game_over = False
     jump = False
@@ -66,12 +71,14 @@ def main_trex():
             screen.blit(text_begin, [150, 150])
             run_point = 0
             pygame.display.update()
+            
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_run = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
+                    jump_music.play()
                     if dino_y == 275:
                         jump = True
                         back_velocity = 4
@@ -94,8 +101,8 @@ def main_trex():
         if back_x == -600:
             back_x = 0
 
-        if tree_x < -1600:
-            tree_x = 550
+        if tree_x < -2000:
+            tree_x = 650
 
         # making dino jumps
         if 276 > dino_y > 125:
@@ -115,23 +122,31 @@ def main_trex():
             game = False
             game_over = True
 
-        if tree_x + 400 < dino_x + 50 < tree_x + 470 and tree_y < dino_y + 50 < tree_y + 100:
+        if tree_x + 430 < dino_x + 50 < tree_x + 510 and tree_y < dino_y + 50 < tree_y + 50:
             back_velocity = 0.0001
-            run_point = 0
+            run_point = 0          
             game = False
             game_over = True
 
-        if tree_x + 800 < dino_x + 50 < tree_x + 870 and tree_y < dino_y + 50 < tree_y + 100:
+        if tree_x + 835 < dino_x + 50 < tree_x + 915 and tree_y < dino_y + 50 < tree_y + 50:
             back_velocity = 0.0001
-            run_point = 0
+            run_point = 0           
             game = False
             game_over = True
 
-        if tree_x + 1200 < dino_x + 50 < tree_x + 1270 and tree_y < dino_y + 50 < tree_y + 100:
+        if tree_x + 1200 < dino_x + 50 < tree_x + 1270 and tree_y < dino_y + 50 < tree_y + 50:
             back_velocity = 0.0001
-            run_point = 0
+            run_point = 0           
             game = False
             game_over = True
+        
+        if tree_x + 1620 < dino_x + 50 < tree_x + 1690 and tree_y < dino_y + 50 < tree_y + 50:
+            back_velocity = 0.0001
+            run_point = 0         
+            game = False
+            game_over = True
+
+        
 
         if game:
             score += 1
@@ -159,6 +174,8 @@ def main_trex():
             if run_point > 15:
                 run_point = 0
 
+
+        screen.blit(tree, [tree_x,tree_y])
         screen.blit(tree1, [tree_x + 400, tree_y])
         screen.blit(tree2, [tree_x + 800, tree_y - 8])
         screen.blit(tree3, [tree_x + 1200, tree_y - 8])
