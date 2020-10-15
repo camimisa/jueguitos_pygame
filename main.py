@@ -18,10 +18,16 @@ game_font = pygame.font.Font('retro_computer_personal_use.ttf', 40)
 game_font.set_bold(True)
 white = (255, 255, 255)
 red = (215, 16, 16)
+
+pygame.mixer.music.load('menu_music.mp3')
+pygame.mixer.music.play(100)
+
 # main menu
 
 
 while run:
+    
+    pygame.mixer.music.set_volume(0.7)
     window.fill((0, 0, 0))
     message_surface = game_font.render("CLASSIC GAMES", True, red)
     message_rect = message_surface.get_rect(center=(W // 2, H // 2))
@@ -55,23 +61,31 @@ while run:
     window.blit(listGamesIcons[6], listGamesIcons[6].get_rect(center=listGamesRects[6].center))
 
     for event in pygame.event.get():
+        
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             if listGamesRects[0].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 tateti.main_game()
             if listGamesRects[1].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 flappy_bird.main_game()
             if listGamesRects[2].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 pong.view_menu_screen()
             if listGamesRects[3].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 snake.intro()
             if listGamesRects[4].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 trex.main_trex()
             if listGamesRects[5].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 spaceinvaders.main_game()
             if listGamesRects[6].collidepoint(pos):
+                pygame.mixer.music.set_volume(0.2)
                 breakout.main_game()
 
     pygame.display.set_caption("MENU")
