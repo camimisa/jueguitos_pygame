@@ -13,6 +13,8 @@ display_height = 600
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('Snake')
 block_size = 10
+eat_sound = pygame.mixer.Sound('snake_files/eat.wav')
+end_game_sound = pygame.mixer.Sound('snake_files/end_game.wav')
 
 clock = pygame.time.Clock()
 FPS = 22
@@ -148,6 +150,7 @@ def game_loop():
             message_to_screen("Presiona la tecla p para jugar de nuevo!", white, -100, 's')
             message_to_screen("Presiona la tecla q para salir!", white, -50, 's')
             message_to_screen("Presiona la tecla h para ir al menu!", white, 0, 's')
+            end_game_sound.play()
             pygame.display.update()
         while gameOver:
            
@@ -163,7 +166,16 @@ def game_loop():
                     if event.key == pygame.K_h:
                         intro()
                     if event.key == pygame.K_p:
-                        game_loop()
+                        gameExit = False
+                        gameOver = False
+                        lead_x = display_width / 2
+                        lead_y = display_height / 2
+                        snake_list = []
+                        snake_length = 1
+                        lead_x_change = 0
+                        lead_y_change = 0
+                        randappleX = round(random.randrange(0, display_width - block_size) / 10.0) * 10.0
+                        randappleY = round(random.randrange(0, display_height - block_size) / 10.0) * 10.0
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameExit = True
@@ -210,8 +222,7 @@ def game_loop():
         if lead_x == randappleX and lead_y == randappleY:
             randappleX = round(random.randrange(0, display_width - block_size) / 10.0) * 10.0
             randappleY = round(random.randrange(0, display_height - block_size) / 10.0) * 10.0
-            # print randappleY,randappleY + block_size,lead_y
-            # print randappleX,randappleY,lead_x,lead_y
+            eat_sound.play()
             snake_length += 1
 
         clock.tick(FPS)
