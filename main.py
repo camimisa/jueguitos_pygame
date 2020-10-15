@@ -20,7 +20,7 @@ white = (255, 255, 255)
 red = (215, 16, 16)
 
 pygame.mixer.music.load('menu_music.mp3')
-pygame.mixer.music.play(100)
+pygame.mixer.music.play(-1)
 
 # main menu
 
