@@ -1,5 +1,5 @@
 # TRABAJO PRÁCTICO SEMINARIO DE LENGUAJES 
-## 🚀_CLASSIC GAMES_🚀
+## _🚀CLASSIC GAMES🚀_
 
 ### Integrantes:  
 -Annaccarato Manuel  
