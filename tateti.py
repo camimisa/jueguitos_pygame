@@ -11,6 +11,8 @@ class Tateti:
     red = (255, 0, 0)
     white = (255, 255, 255)
     black = (0, 0, 0)
+    light_green = (117, 240, 117)
+    light_red = (233, 102, 81)
     title_pos = [300, 50]
     font_winner = pygame.font.Font('retro_computer_personal_use.ttf', 50)
     font_name_game = pygame.font.Font('retro_computer_personal_use.ttf', 30)
@@ -86,6 +88,7 @@ class Tateti:
 
     def game_start(self):
         self.window.fill((0, 0, 0))
+        self.window.blit(self.name_game_rendered, self.title_pos)
         self.listRect = [pygame.draw.rect(self.window, (8, 47, 99), (230, 130, 340, 340)),
                          pygame.draw.rect(self.window, (188, 196, 208), (240, 140, 100, 100)),
                          pygame.draw.rect(self.window, (188, 196, 208), (350, 140, 100, 100)),
@@ -101,12 +104,16 @@ class Tateti:
         self.winner = 0
         self.inMenu = False
         self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        rect_circle = pygame.draw.rect(self.window, self.light_green, (50, 230, 150, 200))
+        rect_cross = pygame.draw.rect(self.window, self.light_red, (600, 230, 150, 200))
+        self.window.blit(self.circle, self.circle.get_rect(center=rect_circle.center))
+        self.window.blit(self.cross, self.cross.get_rect(center=rect_cross.center))
 
     def main_tateti(self):
         self.game_start()
+        pygame.time.delay(500)
         while self.run:
             pygame.time.delay(100)
-            self.window.blit(self.name_game_rendered, self.title_pos)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.run = False
@@ -116,7 +123,8 @@ class Tateti:
                         self.draw = 1
                         self.board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
                         self.winner = 0
-                if event.type == pygame.MOUSEBUTTONUP:
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    rect_cross = pygame.draw.rect(self.window, self.black, (600, 230, 150, 200))
                     position = pygame.mouse.get_pos()
                     if self.winner == 0:
                         if self.listRect[1].collidepoint(position) and self.listFirstOpen[0]:
@@ -214,9 +222,15 @@ class Tateti:
                     if self.play_rendered.get_rect(
                             topleft=self.play_again_pos).collidepoint(position) and self.winner != 0:
                         self.game_start()
+                    if self.draw == 1 and not self.inMenu:
+                        rect = pygame.draw.rect(self.window, self.light_green, (50, 230, 150, 200))
+                        self.window.blit(self.circle, self.circle.get_rect(center=rect.center))
+                    if self.draw == 2 and not self.inMenu:
+                        rect = pygame.draw.rect(self.window, self.light_green, (50, 230, 150, 200))
+                        self.window.blit(self.cross, self.cross.get_rect(center=rect.center))
             pygame.display.update()
             if self.check_winner(1) == -1:
-                pygame.time.delay(1000)
+                pygame.time.delay(2000)
                 self.window.fill(self.black)
                 winner_rendered = self.font_winner.render('TIE', False, self.red)
                 self.window.blit(winner_rendered, [350, 230])
@@ -230,12 +244,12 @@ class Tateti:
                 self.winner = 2
             if self.winner == 1 or self.winner == 2:
                 if not self.inMenu:
-                    pygame.time.delay(1000)
+                    pygame.time.delay(1800)
                     self.window.fill(self.black)
                     winner_rendered = self.font_winner.render('PLAYER  ' + str(self.winner) + '  WON', False, self.red)
                     self.window.blit(winner_rendered, [170, 230])
                     pygame.display.update()
-                    pygame.time.delay(2000)
+                    pygame.time.delay(1500)
                     self.menu()
                     pygame.display.update()
 
