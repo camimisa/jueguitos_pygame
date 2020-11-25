@@ -1,8 +1,9 @@
 # tp_seminario
 
-# TRABAJO PRACTICO SEMINARIO DE LENGUAJES
+## TRABAJO PRACTICO SEMINARIO DE LENGUAJES 
+## _CLASSIC GAMES_
 
-# Integrantes:  
+### Integrantes:  
 -Annaccarato Manuel  
 -Garcia Misa Camila  
 -Godirio Sebastian  
